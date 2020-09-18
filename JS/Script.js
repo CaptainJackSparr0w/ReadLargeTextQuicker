@@ -1,5 +1,6 @@
 var TextToRead = "";
 var arr;
+var timer;
 var isPaused = false;
 var allText = document.getElementById("AllText");
 var pauseBtn = document.getElementById("PauseBtn");
@@ -20,6 +21,10 @@ allText.style.height = window.innerHeight * (4/5);
 
 function Start()
 {
+    if(timer != undefined)
+        clearInterval(timer);
+
+    //String.prototype.replace()
     TextToRead = allText.value;
     arr = CreateArray(TextToRead);
     index = -1;
@@ -28,7 +33,7 @@ function Start()
     {
         duration = 1000;
     }
-    setInterval(myTimer, duration);
+    timer = setInterval(myTimer, duration);
 }
 function Pause()
 {
