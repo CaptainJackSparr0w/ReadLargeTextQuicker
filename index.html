@@ -3,12 +3,13 @@
         
     </head>
     <body>
-        <input type="text" id="duration"/>
+        <input type="text" id="duration" value="1000"/>
         <input type="button" onclick="Start()" value="Start" >
+        <input id="PauseBtn" type="button" onclick="Pause()" value="Pause" >
         <br/>
         <br/>
-        <canvas id="Canvas" style="border-style: dashed;border-width: 2px;">
-
+        <textarea id="AllText" style="border-style: dotted;border-width: 2px;"></textarea>
+        <canvas id="Canvas" style="border-style: dashed;border-width: 1px;">
         </canvas>
         <script src="./JS/Script.js"></script>
     </body>

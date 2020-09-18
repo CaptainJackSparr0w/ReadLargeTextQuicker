@@ -1,6 +1,8 @@
 var TextToRead = "";
 var arr;
-TextToRead = "Let me start with giving you my background. I am a professional, Government licenced Private Investigator. 20 years of active field operations. Trained to be highly analytical, hyper attention to detail and awareness. I am the the person to ask the right questions, analyze in highly stressful and emotionally impactful moments, to dig out the truth.";
+var isPaused = false;
+var allText = document.getElementById("AllText");
+var pauseBtn = document.getElementById("PauseBtn");
 
 var index = -1;
 
@@ -10,20 +12,38 @@ var ctx = canvas.getContext("2d");
 ctx.canvas.width  = window.innerWidth * (4/5);
 ctx.canvas.height = window.innerHeight * (4/5);
 
+allText.style.width = window.innerWidth * (0.8/5);
+allText.style.height = window.innerHeight * (4/5);
+
 // DrawWord(word);
 // ClearCanvas();
 
 function Start()
 {
+    TextToRead = allText.value;
     arr = CreateArray(TextToRead);
+    index = -1;
     var duration = document.getElementById("duration").value;
-    if(duration == undefined || duration == NaN)
+    if(duration == undefined || duration == NaN || duration == "")
     {
         duration = 1000;
     }
     setInterval(myTimer, duration);
 }
-
+function Pause()
+{
+    if(isPaused)
+    {
+        isPaused = false;
+        pauseBtn.setAttribute("value", "Pause");
+    }
+    else if(!isPaused)
+    {
+        isPaused = true;
+        pauseBtn.setAttribute("value", "Play");
+    }
+        
+}
 
 
 function CreateArray(str)
@@ -33,6 +53,9 @@ function CreateArray(str)
 
 function myTimer() 
 {
+    if(isPaused)
+        return;
+
     var word = GetNextWord();
     if(word == undefined)
     {
