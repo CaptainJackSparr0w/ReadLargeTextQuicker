@@ -25,7 +25,7 @@ function Start()
         clearInterval(timer);
 
     //String.prototype.replace()
-    TextToRead = allText.value;
+    TextToRead = allText.value.replace(/\n/g, " ").replace("  "," ");
     arr = CreateArray(TextToRead);
     index = -1;
     var duration = document.getElementById("duration").value;
@@ -66,7 +66,7 @@ function myTimer()
     {
         word = "~~~";
         DrawWord(word);
-        clearInterval();
+        clearInterval(timer);
     }
     ClearCanvas();
     DrawWord(word);
@@ -75,11 +75,10 @@ function myTimer()
 
 function DrawWord(word)
 {
-    ctx.font = "200px Arial";
-    // ctx.fillStyle = "red";
+    ctx.font = "200px Segoe UI";
+    ctx.fillStyle = "blanchedalmond";
     ctx.textAlign = "center";
     ctx.fillText(word, canvas.width/2, canvas.height/2);
-
 }
 
 function ClearCanvas()
