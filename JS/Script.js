@@ -1,9 +1,13 @@
 var TextToRead = "";
+var textColor = "#162727";//"darkslategray"; //"blanchedalmond";
 var arr;
 var timer;
 var isPaused = false;
 var allText = document.getElementById("AllText");
 var pauseBtn = document.getElementById("PauseBtn");
+var seekbar = document.getElementById("seekbar");
+var slider = document.getElementById("slider");
+
 
 var index = -1;
 
@@ -70,13 +74,13 @@ function myTimer()
     }
     ClearCanvas();
     DrawWord(word);
-      
+    progressSlider();
 }
 
 function DrawWord(word)
 {
     ctx.font = "200px Segoe UI";
-    ctx.fillStyle = "blanchedalmond";
+    ctx.fillStyle = textColor;
     ctx.textAlign = "center";
     ctx.fillText(word, canvas.width/2, canvas.height/2);
 }
@@ -91,3 +95,26 @@ function GetNextWord()
     index++;
     return arr[index];
 }
+
+//seekbar code
+function seek(e)
+{
+    slider.style.left = e.clientX - slider.offsetWidth / 2 + 'px';
+    index = parseInt(arr.length * (e.clientX / seekbar.offsetWidth)) - 1; 
+    console.log(arr.length);
+    console.log(seekbar.offsetWidth);
+    console.log(e.clientX);
+    console.log(parseInt(arr.length * (e.clientX / seekbar.offsetWidth)) - 1);
+}
+
+function getStepLength()
+{
+    return seekbar.offsetWidth/arr.length;
+}
+
+function progressSlider()
+{
+    slider.style.left = slider.offsetLeft + getStepLength() +'px';
+}
+
+// setInterval(progressSlider, 1000);
