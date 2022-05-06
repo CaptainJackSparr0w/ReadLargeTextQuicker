@@ -13,3 +13,16 @@
     display: inline-block;
     position:absolute;
   }
+
+  .pausebar{
+    border: darkgreen 1px solid;
+    background-color: rgba(4, 61, 4, 0.575); 
+    color: rgba(4, 61, 4, 0.856); 
+    /* opacity: 50%; */
+  }
+  
+  td.pausebar:hover{
+    background-color: rgba(32, 105, 32, 0.678); 
+    color: rgb(60, 253, 60); 
+    /* opacity: 60%; */
+  }

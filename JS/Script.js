@@ -8,6 +8,8 @@ var pauseBtn = document.getElementById("PauseBtn");
 var seekbar = document.getElementById("seekbar");
 var slider = document.getElementById("slider");
 
+var previousWordsInContext = 5;
+var nextWordsInContext = 6;
 
 var index = -1;
 
@@ -22,7 +24,14 @@ allText.style.height = window.innerHeight * (4/5);
 
 // DrawWord(word);
 // ClearCanvas();
-
+function PauseBarActive(active, control)
+{
+    isPaused = active;
+    if(active)
+        control.innerHTML = "PAUSED..";
+    else
+        control.innerHTML = "Hover to pause";
+}
 function Start()
 {
     if(timer != undefined)
@@ -73,16 +82,25 @@ function myTimer()
         clearInterval(timer);
     }
     ClearCanvas();
-    DrawWord(word);
+    ShowWord(word);
+    ShowContext();
     progressSlider();
 }
 
-function DrawWord(word)
+function ShowWord(word)
 {
-    ctx.font = "200px Segoe UI";
-    ctx.fillStyle = textColor;
+    DrawWord(word, canvas.width/2, canvas.height/2, "200px Segoe UI", "LightGray");
+}
+function ShowContext()
+{
+    DrawWord(GetPreviousWords() + GetNextWords(), canvas.width/2, canvas.height * 0.9, "50px Segeo UI", "Gray");
+}
+function DrawWord(word, x, y, font, color)
+{
+    ctx.font = font;
+    ctx.fillStyle = (color != undefined)? color : textColor;
     ctx.textAlign = "center";
-    ctx.fillText(word, canvas.width/2, canvas.height/2);
+    ctx.fillText(word, x, y);
 }
 
 function ClearCanvas()
@@ -94,6 +112,32 @@ function GetNextWord()
 {
     index++;
     return arr[index];
+}
+
+function GetPreviousWords()
+{
+    count = previousWordsInContext;
+    if(index < 5)
+        count = index;
+    words = "";
+    for(var i = index - 1; i > index - count; i--)
+    {
+        words = arr[i] + " " + words;
+    }
+    return words;
+}
+
+function GetNextWords()
+{
+    count = nextWordsInContext;
+    if(arr.length - index < 5)
+        count = arr.length - index;
+    words = "";
+    for(var i = index; i < index + count; i++)
+    {
+        words = words + " " + arr[i];
+    }
+    return words;
 }
 
 //seekbar code

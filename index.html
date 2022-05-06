@@ -1,22 +1,35 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body style="background-color: black;">
-        <input type="text" id="duration" value="1000"/>
-        <input type="button" onclick="Start()" value="Start" >
-        <input id="PauseBtn" type="button" onclick="Pause()" value="Pause" >
-        <br/>
-        <br/>
-        <div id="seekbar" class="seekbar" onclick="seek(event)">
-            <div id="slider" class="slider">
-            </div>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: black;">
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 30%;">
+                <input type="text" id="duration" value="1000" />
+                <input type="button" onclick="Start()" value="Start">
+                <input id="PauseBtn" type="button" onclick="Pause()" value="Pause">
+            </td>
+            <td style="width: 70%;" align="center" class="pausebar" onmouseenter="PauseBarActive(true, this)" onmouseleave="PauseBarActive(false)">
+                PAUSED
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <div id="seekbar" class="seekbar" onclick="seek(event)">
+        <div id="slider" class="slider">
         </div>
-        <br/>
-        <br/>
-        <textarea id="AllText" style="border-style: dashed;border-width: 1px;color:darkgray;background-color:black;" placeholder="enter your text"></textarea>
-        <canvas id="Canvas" style="border-style: dashed;border-width: 1px; color:darkgray; ">
-        </canvas>
-        <script src="./JS/Script.js"></script>
-    </body>
+    </div>
+    <br />
+    <br />
+    <textarea id="AllText" style="border-style: dashed;border-width: 1px;color:darkgray;background-color:black;"
+        placeholder="enter your text"></textarea>
+    <canvas id="Canvas" style="border-style: dashed;border-width: 1px; color:darkgray; ">
+    </canvas>
+    <script src="./JS/Script.js"></script>
+</body>
+
 </html>
