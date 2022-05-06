@@ -17,7 +17,7 @@ var canvas = document.getElementById("Canvas");
 var ctx = canvas.getContext("2d");
 
 ctx.canvas.width  = window.innerWidth * (4/5);
-ctx.canvas.height = window.innerHeight * (4/5);
+ctx.canvas.height = window.innerHeight * (3/5);
 
 allText.style.width = window.innerWidth * (0.8/5);
 allText.style.height = window.innerHeight * (4/5);
@@ -47,6 +47,7 @@ function Start()
         duration = 1000;
     }
     timer = setInterval(myTimer, duration);
+    HidTextArea(true);
 }
 function Pause()
 {
@@ -54,16 +55,24 @@ function Pause()
     {
         isPaused = false;
         pauseBtn.setAttribute("value", "Pause");
+        HidTextArea(false);
     }
     else if(!isPaused)
     {
         isPaused = true;
         pauseBtn.setAttribute("value", "Play");
+        HidTextArea(true);
     }
         
 }
 
-
+function HidTextArea(hide)
+{
+    if(hide)
+        document.getElementById('AllText').style.visibility = 'hidden';
+    else
+        document.getElementById('AllText').style.visibility = 'visible';
+}
 function CreateArray(str)
 {
     return str.trim().split(" ");
@@ -93,7 +102,9 @@ function ShowWord(word)
 }
 function ShowContext()
 {
-    DrawWord(GetPreviousWords() + GetNextWords(), canvas.width/2, canvas.height * 0.9, "50px Segeo UI", "Gray");
+    var contextWords = GetPreviousWords() + "<span class='contextDisplayCurrent'>" + arr[index] + "</span>" + GetNextWords();
+    //DrawWord(contextWords, canvas.width/2, canvas.height * 0.9, "50px Segeo UI", "Gray");
+    document.getElementById('contextDisplay').innerHTML = contextWords;
 }
 function DrawWord(word, x, y, font, color)
 {
@@ -133,7 +144,7 @@ function GetNextWords()
     if(arr.length - index < 5)
         count = arr.length - index;
     words = "";
-    for(var i = index; i < index + count; i++)
+    for(var i = index + 1; i < index + count; i++)
     {
         words = words + " " + arr[i];
     }

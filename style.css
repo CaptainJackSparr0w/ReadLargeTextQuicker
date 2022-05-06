@@ -26,3 +26,17 @@
     color: rgb(60, 253, 60); 
     /* opacity: 60%; */
   }
+
+  .contextDisplayStyle{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    color: deepskyblue;
+    text-align: center;
+  }
+  
+  .contextDisplayCurrent{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    color: honeydew;
+    text-align: center;
+  }

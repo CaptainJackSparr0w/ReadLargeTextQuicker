@@ -12,7 +12,8 @@
                 <input type="button" onclick="Start()" value="Start">
                 <input id="PauseBtn" type="button" onclick="Pause()" value="Pause">
             </td>
-            <td style="width: 70%;" align="center" class="pausebar" onmouseenter="PauseBarActive(true, this)" onmouseleave="PauseBarActive(false)">
+            <td style="width: 70%;" align="center" class="pausebar" onmouseenter="PauseBarActive(true, this)"
+                onmouseleave="PauseBarActive(false)">
                 PAUSED
             </td>
         </tr>
@@ -24,11 +25,30 @@
         </div>
     </div>
     <br />
-    <br />
-    <textarea id="AllText" style="border-style: dashed;border-width: 1px;color:darkgray;background-color:black;"
-        placeholder="enter your text"></textarea>
-    <canvas id="Canvas" style="border-style: dashed;border-width: 1px; color:darkgray; ">
-    </canvas>
+    <table>
+        <tr>
+            <td>
+                <textarea id="AllText"
+                    style="border-style: dashed;border-width: 1px;color:darkgray;background-color:black; visibility: visible;"
+                    placeholder="enter your text"></textarea>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <canvas id="Canvas" style="border-style: dashed;border-width: 0px; color:darkgray; ">
+                            </canvas>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="contextDisplay" class="contextDisplayStyle">
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
     <script src="./JS/Script.js"></script>
 </body>
 
